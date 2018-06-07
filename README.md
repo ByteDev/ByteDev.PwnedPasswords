@@ -5,10 +5,6 @@ and check whether a particular password has been pwned and if so how many occurr
 
 ## Code
 
-Clone the git repository:
-
-`git clone https://bytedev@bitbucket.org/bytedev/bytedev.pwnedpasswords.git`
-
 ByteDev.PwnedPasswords has been written as a .NET Standard 2.0 library, so you can consume it from a .NET Core or .NET Framework 4.6.1 (or greater) application.
 
 Unit tests and integration tests are also provided in the solution.
