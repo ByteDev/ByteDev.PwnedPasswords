@@ -3,9 +3,21 @@
 Provides client functionality to talk to the pwnedpasswords API
 and check whether a particular password has been pwned and if so how many occurrences there have been.
 
-## Code
+## Installation
 
 ByteDev.PwnedPasswords has been written as a .NET Standard 2.0 library, so you can consume it from a .NET Core or .NET Framework 4.6.1 (or greater) application.
+
+ByteDev.PwnedPasswords is hosted as a package on nuget.org.  To install from the Package Manager Console in Visual Studio run:
+
+`Install-Package ByteDev.PwnedPasswords`
+
+Further details can be found on the [nuget page](https://www.nuget.org/packages/ByteDev.PwnedPasswords/).
+
+## Code
+
+The repo can be cloned from git bash:
+
+`git clone https://github.com/ByteDev/ByteDev.PwnedPasswords`
 
 Unit tests and integration tests are also provided in the solution.
 
