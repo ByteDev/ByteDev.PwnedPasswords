@@ -1,7 +1,6 @@
 # ByteDev.PwnedPasswords
 
-Provides client functionality to talk to the pwnedpasswords API
-and check whether a particular password has been pwned and if so how many occurrences there have been.
+Provides client functionality to talk to the pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
 
 ## Installation
 
@@ -23,8 +22,6 @@ Unit tests and integration tests are also provided in the solution.
 
 ## Usage
 
-Add a reference to ByteDev.PwnedPasswords.  A nuget reference can be found [here](https://www.nuget.org/packages/ByteDev.PwnedPasswords/).
-
 The `PwnedPasswordsClient` class has (since v1.1) only one public method:
 
 - **GetHasBeenPwnedAsync(HashedPassword hashedPassword)**
@@ -33,7 +30,18 @@ This methods will return a `PwnedPasswordResponse` object containing details of 
 
 If the `PwnedPasswordsClient` class has any problems getting the details for a password it will throw an `PwnedPasswordsClientException`.
 
-Further usage examples can be seen in the integration tests project (ByteDev.PwnedPasswords.IntTests).
+### Example
+
+```c#
+var hashedPassword = new HashedPassword("12345");
+
+var client = new PwnedPasswordsClient();
+
+var result = await client.GetHasBeenPwnedAsync(hashedPassword);
+
+Console.WriteLine($"Has Password been pwned: {result.IsPwned}");
+Console.WriteLine($"Password has been pwned {result.Count} times.");
+```
 
 ## Changes in v1.1
 
@@ -50,7 +58,7 @@ However, as of 1st June 2018 the API will be changed to only support option 3 (p
 See the following for more general information:
 
 - [PwnedPasswords API details](https://haveibeenpwned.com/API/v2#PwnedPasswords)
-- [Troy Hunt blog post](https://www.troyhunt.com/ive-just-launched-pwned-passwords-version-2/)
+- [Troy Hunt blog post - Pwned Passwords v2](https://www.troyhunt.com/ive-just-launched-pwned-passwords-version-2/)
 
 See the following to changes to the API to only support partial hash (range) only searches:
 
