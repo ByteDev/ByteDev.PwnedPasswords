@@ -1,3 +1,5 @@
+[![NuGet Package](https://img.shields.io/nuget/v/ByteDev.PwnedPasswords.svg)](https://www.nuget.org/packages/ByteDev.PwnedPasswords)
+
 # ByteDev.PwnedPasswords
 
 Provides client functionality to talk to the pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
