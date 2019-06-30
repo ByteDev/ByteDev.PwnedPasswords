@@ -1,9 +1,11 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.PwnedPasswords?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-PwnedPasswords/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.PwnedPasswords.svg)](https://www.nuget.org/packages/ByteDev.PwnedPasswords)
 
+![Logo](https://raw.githubusercontent.com/bytedev/ByteDev.PwnedPasswords/master/images/icon.png)
+
 # ByteDev.PwnedPasswords
 
-Provides client functionality to talk to the pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
+Provides client functionality to talk to Troy Hunt's Pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
 
 ## Installation
 
@@ -25,9 +27,10 @@ Unit tests and integration tests are also provided in the solution.
 
 ## Usage
 
-The `PwnedPasswordsClient` class has (since v1.1) only one public method:
+The `PwnedPasswordsClient` class has two public methods:
 
-- **GetHasBeenPwnedAsync(HashedPassword hashedPassword)**
+- **GetHasBeenPwnedAsync(string password)**
+- **GetHasBeenPwnedAsync(string password, CancellationToken cancellationToken)**
 
 This methods will return a `PwnedPasswordResponse` object containing details of whether the password has been pwned and a count of how many times.
 
@@ -36,25 +39,22 @@ If the `PwnedPasswordsClient` class has any problems getting the details for a p
 ### Example
 
 ```c#
-var hashedPassword = new HashedPassword("12345");
+var client = new PwnedPasswordsClient(new HttpClient());
 
-var client = new PwnedPasswordsClient();
-
-var result = await client.GetHasBeenPwnedAsync(hashedPassword);
+var result = await client.GetHasBeenPwnedAsync("Password1");
 
 Console.WriteLine($"Has Password been pwned: {result.IsPwned}");
 Console.WriteLine($"Password has been pwned {result.Count} times.");
 ```
 
-## Changes in v1.1
+### Version 2.0 changes
 
-There used to be 3 different ways you could call the API:
+A number of breaking changes were made from version 1.1. to 2.0:
 
-1. Search with clear text password
-2. Search with SHA1 hash of password
-3. Search with partial SHA1 hash of password
-
-However, as of 1st June 2018 the API will be changed to only support option 3 (partial hash).  Version 1.1 of this project now only supports partial hash searches.
+- PwnedPasswordsClient now takes a simple string for the password (as the API only takes a hash of the password theres no need for the consumer to supply a HashedPassword object)
+- IPwnedPasswordsClient interface now provided
+- PwnedPasswordsClient needs to be provided with an implementation of HttpClient on construction
+- PwnedPasswordsClient.GetHasBeenPwnedAsync method now takes optional CancellationToken
 
 ## Further information
 

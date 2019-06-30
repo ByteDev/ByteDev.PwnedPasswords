@@ -3,21 +3,15 @@ using ByteDev.PwnedPasswords.Hashing;
 
 namespace ByteDev.PwnedPasswords
 {
-    public class HashedPassword
+    internal class HashedPassword
     {
         public string ClearPassword { get; }
 
         public string Hash { get; }
 
-        public string HashPrefix
-        {
-            get { return Hash.Substring(0, 5); }
-        }
+        public string HashPrefix => Hash.Substring(0, 5);
 
-        public string HashSuffix
-        {
-            get { return Hash.Substring(5); }
-        }
+        public string HashSuffix => Hash.Substring(5);
 
         public HashedPassword(string clearPassword)
         {

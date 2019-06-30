@@ -8,10 +8,7 @@ namespace ByteDev.PwnedPasswords.Response
 
         public string RawContent { get; }
 
-        public string[] RawContentLines
-        {
-            get { return _rawContentLines ?? (_rawContentLines = RawContent.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)); }
-        }
+        public string[] RawContentLines => _rawContentLines ?? (_rawContentLines = RawContent.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
 
         public FiveCharOnlyResponse(string rawContent)
         {

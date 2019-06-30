@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace ByteDev.PwnedPasswords.IntTests
@@ -16,7 +17,7 @@ namespace ByteDev.PwnedPasswords.IntTests
         [SetUp]
         public void SetUp()
         {
-            _sut = new PwnedPasswordsClient();
+            _sut = new PwnedPasswordsClient(new HttpClient());
         }
 
         [TestFixture]
@@ -25,9 +26,7 @@ namespace ByteDev.PwnedPasswords.IntTests
             [Test]
             public async Task WhenSendingHashPrefix_AndPwned_ThenReturnResponse()
             {
-                var hashedPassword = new HashedPassword(PwnedPassword);
-
-                var result = await _sut.GetHasBeenPwnedAsync(hashedPassword);
+                var result = await _sut.GetHasBeenPwnedAsync(PwnedPassword);
 
                 Assert.That(result.IsPwned, Is.True);
                 Assert.That(result.Count, Is.GreaterThanOrEqualTo(PwnedPasswordCount));
@@ -36,9 +35,7 @@ namespace ByteDev.PwnedPasswords.IntTests
             [Test]
             public async Task WhenSendingHashPrefix_AndNotPwned_ThenReturnResponse()
             {
-                var hashedPassword = new HashedPassword(NotPwnedPassword);
-
-                var result = await _sut.GetHasBeenPwnedAsync(hashedPassword);
+                var result = await _sut.GetHasBeenPwnedAsync(NotPwnedPassword);
 
                 Assert.That(result.IsPwned, Is.False);
                 Assert.That(result.Count, Is.EqualTo(0));

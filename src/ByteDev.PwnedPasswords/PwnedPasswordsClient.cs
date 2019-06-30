@@ -1,37 +1,54 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ByteDev.PwnedPasswords.Response;
 
 namespace ByteDev.PwnedPasswords
 {
-    public class PwnedPasswordsClient
+    public class PwnedPasswordsClient : IPwnedPasswordsClient
     {
-        private static readonly HttpClient HttpClient = new HttpClient();
+        private readonly HttpClient _httpClient;
 
-        public async Task<PwnedPasswordResponse> GetHasBeenPwnedAsync(HashedPassword hashedPassword)
+        public PwnedPasswordsClient(HttpClient httpClient)
         {
-            if (hashedPassword == null)
-                throw new ArgumentNullException(nameof(hashedPassword));
+            _httpClient = httpClient;
+        }
 
-            var response = await HttpClient.GetAsync(UriFactory.GetHashPasswordUri(hashedPassword));
+        public async Task<PwnedPasswordResponse> GetHasBeenPwnedAsync(string password)
+        {
+            return await GetHasBeenPwnedAsync(password, default(CancellationToken));
+        }
 
-            if (response.StatusCode == HttpStatusCode.OK)
+        public async Task<PwnedPasswordResponse> GetHasBeenPwnedAsync(string password, CancellationToken cancellationToken)
+        {
+            var hashedPassword = new HashedPassword(password);
+
+            try
             {
-                var body = await response.Content.ReadAsStringAsync();
+                var response = await _httpClient.GetAsync(UriFactory.GetHashPasswordUri(hashedPassword), cancellationToken);
 
-                var fiveCharResponse = new FiveCharOnlyResponse(body);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var body = await response.Content.ReadAsStringAsync();
 
-                return PwnedPasswordResponse.CreatePwned(fiveCharResponse.GetCount(hashedPassword));
+                    var fiveCharResponse = new FiveCharOnlyResponse(body);
+
+                    return PwnedPasswordResponse.CreatePwned(fiveCharResponse.GetCount(hashedPassword));
+                }
+
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return PwnedPasswordResponse.CreateNotPwned();
+                }
+
+                throw new PwnedPasswordsClientException(CreateUnhandledStatusCodeMessage(response));
             }
-
-            if (response.StatusCode == HttpStatusCode.NotFound)
+            catch (Exception ex)
             {
-                return PwnedPasswordResponse.CreateNotPwned();
+                throw new PwnedPasswordsClientException("Error occured while calling the PwnedPasswords API.", ex);
             }
-
-            throw new PwnedPasswordsClientException(CreateUnhandledStatusCodeMessage(response));
         }
 
         private static string CreateUnhandledStatusCodeMessage(HttpResponseMessage response)
