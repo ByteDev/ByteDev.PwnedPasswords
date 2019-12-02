@@ -1,5 +1,8 @@
 ﻿namespace ByteDev.PwnedPasswords
 {
+    /// <summary>
+    /// Represents a response from the pwned password API.
+    /// </summary>
     public class PwnedPasswordResponse
     {
         /// <summary>
