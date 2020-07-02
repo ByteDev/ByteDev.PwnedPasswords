@@ -23,14 +23,6 @@ Releases follow semantic versioning.
 
 Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.PwnedPasswords/blob/master/docs/RELEASE-NOTES.md).
 
-## Code
-
-The repo can be cloned from git bash:
-
-`git clone https://github.com/ByteDev/ByteDev.PwnedPasswords`
-
-Unit tests and integration tests are also provided in the solution.
-
 ## Usage
 
 The `PwnedPasswordsClient` class has two public methods:
@@ -42,25 +34,14 @@ This methods will return a `PwnedPasswordResponse` object containing details of 
 
 If the `PwnedPasswordsClient` class has any problems getting the details for a password it will throw an `PwnedPasswordsClientException`.
 
-### Example
-
-```c#
+```csharp
 var client = new PwnedPasswordsClient(new HttpClient());
 
-var result = await client.GetHasBeenPwnedAsync("Password1");
+PwnedPasswordResponse response = await client.GetHasBeenPwnedAsync("Password1");
 
-Console.WriteLine($"Has Password been pwned: {result.IsPwned}");
-Console.WriteLine($"Password has been pwned {result.Count} times.");
+Console.WriteLine($"Has Password been pwned: {response.IsPwned}.");
+Console.WriteLine($"Password has been pwned {response.Count} times.");
 ```
-
-### Version 2.0 changes
-
-A number of breaking changes were made from version 1.1. to 2.0:
-
-- PwnedPasswordsClient now takes a simple string for the password (as the API only takes a hash of the password theres no need for the consumer to supply a HashedPassword object)
-- IPwnedPasswordsClient interface now provided
-- PwnedPasswordsClient needs to be provided with an implementation of HttpClient on construction
-- PwnedPasswordsClient.GetHasBeenPwnedAsync method now takes optional CancellationToken
 
 ## Further information
 

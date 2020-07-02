@@ -32,7 +32,7 @@ namespace ByteDev.PwnedPasswords
         /// <exception cref="T:ByteDev.PwnedPasswords.PwnedPasswordsClientException">Error occured while calling the pwned passwords API.</exception>
         public async Task<PwnedPasswordResponse> GetHasBeenPwnedAsync(string password)
         {
-            return await GetHasBeenPwnedAsync(password, default(CancellationToken));
+            return await GetHasBeenPwnedAsync(password, default);
         }
 
         /// <summary>
