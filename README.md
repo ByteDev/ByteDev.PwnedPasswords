@@ -5,7 +5,7 @@
 
 # ByteDev.PwnedPasswords
 
-Provides client functionality to talk to Troy Hunt's Pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
+Provides client SDK functionality to talk to Troy Hunt's Pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
 
 ## Installation
 
@@ -16,6 +16,12 @@ ByteDev.PwnedPasswords is hosted as a package on nuget.org.  To install from the
 `Install-Package ByteDev.PwnedPasswords`
 
 Further details can be found on the [nuget page](https://www.nuget.org/packages/ByteDev.PwnedPasswords/).
+
+## Release Notes
+
+Releases follow semantic versioning.
+
+Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.PwnedPasswords/blob/master/docs/RELEASE-NOTES.md).
 
 ## Code
 
