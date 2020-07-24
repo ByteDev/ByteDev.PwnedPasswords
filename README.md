@@ -1,11 +1,10 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.PwnedPasswords?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-PwnedPasswords/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.PwnedPasswords.svg)](https://www.nuget.org/packages/ByteDev.PwnedPasswords)
-
-![Logo](https://raw.githubusercontent.com/bytedev/ByteDev.PwnedPasswords/master/images/icon.png)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ByteDev/ByteDev.PwndedPasswords/blob/master/LICENSE)
 
 # ByteDev.PwnedPasswords
 
-Provides client SDK functionality to talk to Troy Hunt's Pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
+.NET Standard library that provides client SDK functionality to talk to Troy Hunt's Pwnedpasswords API and check whether a particular password has been pwned and if so how many occurrences there have been.
 
 ## Installation
 

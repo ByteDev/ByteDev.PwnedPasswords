@@ -8,7 +8,7 @@ using ByteDev.PwnedPasswords.Response;
 namespace ByteDev.PwnedPasswords
 {
     /// <summary>
-    /// Represents a client to the pwned Passwords API.
+    /// Represents a client to the pwned passwords API.
     /// </summary>
     public class PwnedPasswordsClient : IPwnedPasswordsClient
     {
@@ -17,7 +17,7 @@ namespace ByteDev.PwnedPasswords
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ByteDev.PwnedPasswords.PwnedPasswordsClient" /> class.
         /// </summary>
-        /// <param name="httpClient">HttpClient to use internally.</param>
+        /// <param name="httpClient">HttpClient to use in all calls to the API.</param>
         public PwnedPasswordsClient(HttpClient httpClient)
         {
             _httpClient = httpClient;

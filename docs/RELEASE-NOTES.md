@@ -1,5 +1,17 @@
 # Release Notes
 
+## 2.0.3 - 24 July 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Package build changes
+- XML documentation changes
+
 ## 2.0.2 - 02 July 2020
 
 Breaking changes:

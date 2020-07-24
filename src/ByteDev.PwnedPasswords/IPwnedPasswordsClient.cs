@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace ByteDev.PwnedPasswords
 {
     /// <summary>
-    /// Represents a client interface to the pwned Passwords API.
+    /// Represents a client interface for communicating with the pwned passwords API.
     /// </summary>
     public interface IPwnedPasswordsClient
     {

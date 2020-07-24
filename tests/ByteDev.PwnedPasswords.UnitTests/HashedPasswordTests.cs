@@ -12,13 +12,13 @@ namespace ByteDev.PwnedPasswords.UnitTests
         [Test]
         public void WhenTextIsNull_ThenThrowException()
         {
-            Assert.Throws<ArgumentException>(() => new HashedPassword(null));
+            Assert.Throws<ArgumentException>(() => _ = new HashedPassword(null));
         }
 
         [Test]
         public void WhenTextIsEmpty_ThenThrowException()
         {
-            Assert.Throws<ArgumentException>(() => new HashedPassword(string.Empty));
+            Assert.Throws<ArgumentException>(() => _ = new HashedPassword(string.Empty));
         }
 
         [Test]

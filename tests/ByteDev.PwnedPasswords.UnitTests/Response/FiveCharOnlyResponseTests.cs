@@ -18,13 +18,13 @@ namespace ByteDev.PwnedPasswords.UnitTests.Response
             [Test]
             public void WhenContentIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => new FiveCharOnlyResponse(null));
+                Assert.Throws<ArgumentException>(() => _ = new FiveCharOnlyResponse(null));
             }
 
             [Test]
             public void WhenContentIsEmpty_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => new FiveCharOnlyResponse(string.Empty));
+                Assert.Throws<ArgumentException>(() => _ = new FiveCharOnlyResponse(string.Empty));
             }
 
             [Test]
