@@ -29,12 +29,12 @@ The `PwnedPasswordsClient` class has two public methods:
 - **GetHasBeenPwnedAsync(string password)**
 - **GetHasBeenPwnedAsync(string password, CancellationToken cancellationToken)**
 
-This methods will return a `PwnedPasswordResponse` object containing details of whether the password has been pwned and a count of how many times.
+These methods will return a `PwnedPasswordResponse` object containing details of whether the password has been pwned and a count of how many times.
 
 If the `PwnedPasswordsClient` class has any problems getting the details for a password it will throw an `PwnedPasswordsClientException`.
 
 ```csharp
-var client = new PwnedPasswordsClient(new HttpClient());
+IPwnedPasswordsClient client = new PwnedPasswordsClient(new HttpClient());
 
 PwnedPasswordResponse response = await client.GetHasBeenPwnedAsync("Password1");
 
